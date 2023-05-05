@@ -1,2 +1,4 @@
 # app-py-streamlit-uss
-Este es una app desarrollada en Python con la libreria Streamlit.
+
+Esta una app de demostración realizada con la libreria StreamLit en Python.
+Esta app se puede desplegar en contenedores de forma local asi como en nubes como GCP y AWS.
