@@ -3,6 +3,19 @@ import altair as alt
 import math
 import pandas as pd
 import streamlit as st
+import os
+from google.cloud import bigquery
+
+#pip install protobuf==3.20.*
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'shiny-apps-385622-08e5b9820326.json'
+
+client = bigquery.Client()
+
+query = """   SELECT * from `bigquery-public-data.austin_bikeshare.bikeshare_trips` LIMIT 10 """
+
+query_job = client.query(query)
+df = query_job.to_dataframe()
 
 """
 # Esta una app de demostración realizada con la libreria StreamLit. Esta app se puede desplegar en contenedores de forma local asi como en la nube.
@@ -11,6 +24,8 @@ c=st.empty()
         
         
 c.image("uss.png")
+
+st.dataframe(df)
 
 with st.echo(code_location='below'):
     total_points = st.slider("Numero de puntos en el espiral", 1, 5000, 2000)
@@ -32,3 +47,4 @@ with st.echo(code_location='below'):
     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
         .mark_circle(color='#0068c9', opacity=0.5)
         .encode(x='x:Q', y='y:Q'))
+
