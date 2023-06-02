@@ -3,4 +3,5 @@ pandas
 streamlit
 db-dtypes
 google-cloud-bigquery
+google-cloud-storage
 plotly.express
